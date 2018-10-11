@@ -3,11 +3,13 @@ package com.hz.pxp.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hz.pxp.R;
 import com.hz.pxp.common.Const;
@@ -16,7 +18,7 @@ import com.hz.pxp.database.dao.DAOFactory;
 
 public class IndexActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText mPasswordEdit;
+    private EditText mUserName;
     private TextView mLogin;
 
     @Override
@@ -29,7 +31,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         PreferenceHelper.init(this);
         DAOFactory.init(this);
 
-//        mPasswordEdit = (EditText)findViewById(R.id.edit_text);
+        mUserName = (EditText)findViewById(R.id.edtTxt_login_name);
         mLogin = (TextView)findViewById(R.id.login_text);
         mLogin.setOnClickListener(this);
 
@@ -38,8 +40,12 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == mLogin){
-            PreferenceHelper.putString(Const.PM_PASS_WORD,mPasswordEdit.getText().toString());
-            startActivity(new Intent(IndexActivity.this,MainTabActivity.class));
+            if (TextUtils.isEmpty(mUserName.getText().toString())){
+                Toast.makeText(IndexActivity.this,"请输入用户名",Toast.LENGTH_LONG).show();
+            }else {
+                PreferenceHelper.putString(Const.PM_USER_NAME,mUserName.getText().toString());
+                startActivity(new Intent(IndexActivity.this,MainTabActivity.class));
+            }
         }
     }
 }

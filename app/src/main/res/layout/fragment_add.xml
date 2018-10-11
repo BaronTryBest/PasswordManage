@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tabItem"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#123434">
+    android:orientation="vertical"
+    android:background="@color/bg_fragment">
 
-    <Button
-        android:layout_alignParentBottom="true"
-        android:id="@+id/add_pw"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_password" />
+    <include layout="@layout/include_header"/>
 
     <LinearLayout
         android:id="@+id/add_password_layout"
@@ -19,7 +14,7 @@
         android:background="#ffffff"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -159,4 +154,12 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+    <Button
+        android:layout_alignParentBottom="true"
+        android:id="@+id/add_pw"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_password" />
+
+</LinearLayout>

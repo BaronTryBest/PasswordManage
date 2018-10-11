@@ -4,5 +4,5 @@
     <!--按钮按下时的设置  -->
     <item android:state_pressed="true" android:drawable="@color/loginBack"></item>
     <!--按钮松开时的设置  -->
-    <item android:state_pressed="false" android:drawable="@color/loginBack"  ></item>
+    <item android:state_pressed="false" android:drawable="@color/loginFront"  ></item>
 </selector>

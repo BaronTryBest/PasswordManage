@@ -4,7 +4,6 @@
     <string name="add_tab">添加密码</string>
     <string name="mine_tab">个人信息</string>
     <string name="input_key_words">请输入关键字</string>
-    <string name="check_button">查询</string>
     <string name="login">登录</string>
     <string name="add_password">添加密码</string>
     <string name="name">关键字：</string>
@@ -15,5 +14,7 @@
     <string name="third_login">是否第三方登录：</string>
     <string name="third_name">第三方登录平台：</string>
     <string name="third_info">第三方登录信息：</string>
+    <string name="login_hint">请输入用户名</string>
+    <string name="check">查</string>
 
 </resources>
