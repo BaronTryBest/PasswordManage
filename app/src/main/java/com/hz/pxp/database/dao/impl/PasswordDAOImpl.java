@@ -2,6 +2,7 @@ package com.hz.pxp.database.dao.impl;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.widget.Toast;
 
 import com.hz.pxp.database.DBHelper;
 import com.hz.pxp.database.Table;
@@ -22,6 +23,7 @@ public class PasswordDAOImpl implements PasswordDao{
     public long save(PassItem passItem) {
         ContentValues values = passItem2Values(passItem);
         long newId = dbHelper.getWritableDatabase().insert(Table.TABLE_PASS_WORD, null, values);
+        System.out.println("===>> newId = "+newId);
         return newId;
     }
 
@@ -40,6 +42,41 @@ public class PasswordDAOImpl implements PasswordDao{
         return null;
     }
 
+    public PassItem queryName(String name){
+        PassItem passItem;
+        Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, null, null, null, null, null, null);
+        if (cursor != null) {
+            try {
+                while (cursor.moveToNext()) {
+                    if (cursor2PassItem(cursor).name.equals(name)){
+                        passItem = new PassItem();
+                        passItem = cursor2PassItem(cursor);
+                        System.out.println("passItem ====>>>"+passItem.name);
+                        return passItem;
+                    }
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        return null;
+    }
+
+    public boolean isKeyNameExist(String name){
+        Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, null, null, null, null, null, null);
+        if (cursor != null) {
+            try {
+                while (cursor.moveToNext()) {
+                    if (cursor2PassItem(cursor).name.equals(name)){
+                        return true;
+                    }
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        return false;
+    }
     public int queryTotal(){
         int i = 0;
         Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, null, null, null, null, null, null);

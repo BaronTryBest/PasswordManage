@@ -1,6 +1,5 @@
 package com.hz.pxp.activity;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -49,7 +48,7 @@ public class MainTabActivity extends BaseActivity {
         mAddTab = mTabHost.newTabSpec("contact").setIndicator(newIndicatorView(R.string.add_tab));
         mMineTab = mTabHost.newTabSpec("mine").setIndicator(newIndicatorView(R.string.mine_tab));
 
-        mTabHost.addTab(mCheckTab, CheckFragment.class, null);
+        mTabHost.addTab(mCheckTab, QueryFragment.class, null);
         mTabHost.addTab(mAddTab, AddFragment.class, null);
         mTabHost.addTab(mMineTab, MineFragment.class, null);
 

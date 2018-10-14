@@ -1,5 +1,8 @@
 package com.hz.pxp.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.hz.pxp.R;
 import com.hz.pxp.database.dao.DAOFactory;
@@ -53,23 +57,63 @@ public class AddFragment extends BaseFragment {
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPassItem = new PassItem();
-                mPassItem.name = mName.getText().toString();
-                mPassItem.userName = mUserName.getText().toString();
-                mPassItem.passWord = mPassWord.getText().toString();
-                mPassItem.passType = "nomal";
-                mPassItem.email = mEmail.getText().toString();
-                mPassItem.phone = mPhone.getText().toString();
-                mPassItem.isThird = mIsThird.isChecked()?"1":"0";
-                if (mIsThird.isChecked()){
-                    mPassItem.thirdName = mThirdLoginName.getText().toString();
-                    mPassItem.thirdInfo = mThirdLoginInfo.getText().toString();
+
+                if (TextUtils.isEmpty(mName.getText().toString())){
+                    Toast.makeText(getContext(),"请输入关键字",Toast.LENGTH_LONG).show();
                 }else {
-                    mPassItem.thirdName = "";
-                    mPassItem.thirdInfo = "";
+                    if (passwordDAO.isKeyNameExist(mName.getText().toString())){
+                        //关键字已经存在
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("关键字已存在");
+                        builder.setMessage("是否要覆盖之前的记录？");
+                        builder.setPositiveButton("覆盖", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mPassItem = new PassItem();
+                                mPassItem.name = mName.getText().toString();
+                                mPassItem.userName = mUserName.getText().toString();
+                                mPassItem.passWord = mPassWord.getText().toString();
+                                mPassItem.passType = "nomal";
+                                mPassItem.email = mEmail.getText().toString();
+                                mPassItem.phone = mPhone.getText().toString();
+                                mPassItem.isThird = mIsThird.isChecked()?"1":"0";
+                                if (mIsThird.isChecked()){
+                                    mPassItem.thirdName = mThirdLoginName.getText().toString();
+                                    mPassItem.thirdInfo = mThirdLoginInfo.getText().toString();
+                                }else {
+                                    mPassItem.thirdName = "";
+                                    mPassItem.thirdInfo = "";
+                                }
+
+                                passwordDAO.save(mPassItem);
+                            }
+                        });
+                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                        builder.show();
+                    }else {
+                        mPassItem = new PassItem();
+                        mPassItem.name = mName.getText().toString();
+                        mPassItem.userName = mUserName.getText().toString();
+                        mPassItem.passWord = mPassWord.getText().toString();
+                        mPassItem.passType = "nomal";
+                        mPassItem.email = mEmail.getText().toString();
+                        mPassItem.phone = mPhone.getText().toString();
+                        mPassItem.isThird = mIsThird.isChecked()?"1":"0";
+                        if (mIsThird.isChecked()){
+                            mPassItem.thirdName = mThirdLoginName.getText().toString();
+                            mPassItem.thirdInfo = mThirdLoginInfo.getText().toString();
+                        }else {
+                            mPassItem.thirdName = "";
+                            mPassItem.thirdInfo = "";
+                        }
+                        passwordDAO.save(mPassItem);
+                    }
                 }
 
-                passwordDAO.save(mPassItem);
             }
         });
     }
