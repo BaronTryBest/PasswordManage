@@ -3,8 +3,16 @@
     android:id="@+id/tabItem"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    android:background="#f231de">
+    android:background="@color/bg_fragment">
+
+    <include layout="@layout/include_header"/>
+
+    <ListView
+        android:id="@+id/list_mine"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
 
 </LinearLayout>

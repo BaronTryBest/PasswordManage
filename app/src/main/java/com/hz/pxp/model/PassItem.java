@@ -10,4 +10,5 @@ public class PassItem {
     public String isThird;
     public String thirdName;
     public String thirdInfo;
+    public String owner;
 }

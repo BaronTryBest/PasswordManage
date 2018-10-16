@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.widget.Toast;
 
+import com.hz.pxp.common.Const;
+import com.hz.pxp.common.PreferenceHelper;
 import com.hz.pxp.database.DBHelper;
 import com.hz.pxp.database.Table;
 import com.hz.pxp.database.dao.PasswordDao;
@@ -44,14 +46,14 @@ public class PasswordDAOImpl implements PasswordDao{
 
     public PassItem queryName(String name){
         PassItem passItem;
-        Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, null, null, null, null, null, null);
+        String selection = Table.PasswordTable.COLUMN_NAME + "='" + name + "' and " + Table.PasswordTable.COLUMN_OWNER + "='" + PreferenceHelper.getString(Const.PM_USER_NAME) +"'";
+        Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, selection, null, null, null, null, null);
         if (cursor != null) {
             try {
                 while (cursor.moveToNext()) {
                     if (cursor2PassItem(cursor).name.equals(name)){
                         passItem = new PassItem();
                         passItem = cursor2PassItem(cursor);
-                        System.out.println("passItem ====>>>"+passItem.name);
                         return passItem;
                     }
                 }
@@ -62,8 +64,28 @@ public class PasswordDAOImpl implements PasswordDao{
         return null;
     }
 
+    public ArrayList<PassItem> queryPassItems() {
+        ArrayList<PassItem> items = new ArrayList<>();
+        String selection = Table.PasswordTable.COLUMN_OWNER + "='" + PreferenceHelper.getString(Const.PM_USER_NAME) +"'";
+        Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, selection, null, null, null, null, null);
+        if (cursor != null) {
+            try {
+                while (cursor.moveToNext()) {
+                    PassItem passItem = cursor2PassItem(cursor);
+                    items.add(passItem);
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        return items;
+    }
+
+
     public boolean isKeyNameExist(String name){
-        Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, null, null, null, null, null, null);
+//        String selection = Table.PasswordTable.COLUMN_NAME + "=" + name + " and " + Table.PasswordTable.COLUMN_OWNER + "=" + PreferenceHelper.getString(Const.PM_USER_NAME) ;
+        String selection = Table.PasswordTable.COLUMN_NAME + "='" + name + "' and " + Table.PasswordTable.COLUMN_OWNER + "='" + PreferenceHelper.getString(Const.PM_USER_NAME) +"'";
+        Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, selection, null, null, null, null, null);
         if (cursor != null) {
             try {
                 while (cursor.moveToNext()) {
@@ -79,7 +101,8 @@ public class PasswordDAOImpl implements PasswordDao{
     }
     public int queryTotal(){
         int i = 0;
-        Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, null, null, null, null, null, null);
+        String selection = Table.PasswordTable.COLUMN_OWNER + "='" + PreferenceHelper.getString(Const.PM_USER_NAME) +"'";
+        Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, selection, null, null, null, null, null);
         if (cursor != null) {
             try {
                 while (cursor.moveToNext()) {
@@ -103,6 +126,7 @@ public class PasswordDAOImpl implements PasswordDao{
         passItem.isThird = cursor.getString(cursor.getColumnIndex(Table.PasswordTable.COLUMN_THIRD_LOGIN));
         passItem.thirdName = cursor.getString(cursor.getColumnIndex(Table.PasswordTable.COLUMN_THIRD_NAME));
         passItem.thirdInfo = cursor.getString(cursor.getColumnIndex(Table.PasswordTable.COLUMN_THIRD_INFO));
+        passItem.owner = cursor.getString(cursor.getColumnIndex(Table.PasswordTable.COLUMN_OWNER));
         return passItem;
     }
 
@@ -117,6 +141,7 @@ public class PasswordDAOImpl implements PasswordDao{
         values.put(Table.PasswordTable.COLUMN_THIRD_LOGIN,passItem.isThird);
         values.put(Table.PasswordTable.COLUMN_THIRD_NAME,passItem.thirdName);
         values.put(Table.PasswordTable.COLUMN_THIRD_INFO,passItem.thirdInfo);
+        values.put(Table.PasswordTable.COLUMN_OWNER,passItem.owner);
         return values;
     }
 }

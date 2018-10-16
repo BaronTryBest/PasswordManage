@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.hz.pxp.R;
+import com.hz.pxp.common.Const;
+import com.hz.pxp.common.PreferenceHelper;
 import com.hz.pxp.database.dao.DAOFactory;
 import com.hz.pxp.database.dao.impl.PasswordDAOImpl;
 import com.hz.pxp.model.PassItem;
@@ -84,7 +86,7 @@ public class AddFragment extends BaseFragment {
                                     mPassItem.thirdName = "";
                                     mPassItem.thirdInfo = "";
                                 }
-
+                                mPassItem.owner = PreferenceHelper.getString(Const.PM_USER_NAME);
                                 passwordDAO.save(mPassItem);
                             }
                         });
@@ -110,12 +112,11 @@ public class AddFragment extends BaseFragment {
                             mPassItem.thirdName = "";
                             mPassItem.thirdInfo = "";
                         }
+                        mPassItem.owner = PreferenceHelper.getString(Const.PM_USER_NAME);
                         passwordDAO.save(mPassItem);
                     }
                 }
-
             }
         });
     }
-
 }

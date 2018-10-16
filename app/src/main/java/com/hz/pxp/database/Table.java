@@ -13,5 +13,6 @@ public final class Table {
         public static final String COLUMN_THIRD_LOGIN = "third_login";
         public static final String COLUMN_THIRD_NAME = "third_name";
         public static final String COLUMN_THIRD_INFO = "third_info";
+        public static final String COLUMN_OWNER = "owner";
     }
 }
