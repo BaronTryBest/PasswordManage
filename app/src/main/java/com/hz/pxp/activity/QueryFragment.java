@@ -15,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hz.pxp.R;
+import com.hz.pxp.common.CommonUtils;
+import com.hz.pxp.common.Const;
+import com.hz.pxp.common.PreferenceHelper;
 import com.hz.pxp.database.dao.DAOFactory;
 import com.hz.pxp.database.dao.impl.PasswordDAOImpl;
 import com.hz.pxp.model.PassItem;
@@ -110,7 +113,7 @@ public class QueryFragment extends BaseFragment implements View.OnClickListener{
         }else {
             nameTxt.setText(passItem.name);
             userNameTxt.setText(passItem.userName);
-            passwordTxt.setText(passItem.passWord);
+            passwordTxt.setText(CommonUtils.decryptionString(passItem.passWord, PreferenceHelper.getString(Const.PM_USER_NAME)));
             emailTxt.setText(passItem.email);
             phoneTxt.setText(passItem.phone);
             if (passItem.isThird.equals("0")){

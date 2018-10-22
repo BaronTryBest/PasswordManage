@@ -13,6 +13,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hz.pxp.R;
+import com.hz.pxp.common.CommonUtils;
+import com.hz.pxp.common.Const;
+import com.hz.pxp.common.PreferenceHelper;
 import com.hz.pxp.database.dao.DAOFactory;
 import com.hz.pxp.database.dao.impl.PasswordDAOImpl;
 import com.hz.pxp.model.PassItem;
@@ -86,7 +89,7 @@ public class MineFragment extends BaseFragment {
             if (passItem!=null){
                 vh.mName.setText(passItem.name);
                 vh.mUserName.setText(passItem.userName);
-                vh.mPassword.setText(passItem.passWord);
+                vh.mPassword.setText(CommonUtils.decryptionString(passItem.passWord, PreferenceHelper.getString(Const.PM_USER_NAME)));
                 if (TextUtils.isEmpty(passItem.email)){
                     vh.mEmailLayout.setVisibility(View.GONE);
                 }else {

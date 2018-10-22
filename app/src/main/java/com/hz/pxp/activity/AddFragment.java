@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.hz.pxp.R;
+import com.hz.pxp.common.CommonUtils;
 import com.hz.pxp.common.Const;
 import com.hz.pxp.common.PreferenceHelper;
 import com.hz.pxp.database.dao.DAOFactory;
@@ -74,7 +75,7 @@ public class AddFragment extends BaseFragment {
                                 mPassItem = new PassItem();
                                 mPassItem.name = mName.getText().toString();
                                 mPassItem.userName = mUserName.getText().toString();
-                                mPassItem.passWord = mPassWord.getText().toString();
+                                mPassItem.passWord = CommonUtils.encryptionString(mPassWord.getText().toString(),PreferenceHelper.getString(Const.PM_USER_NAME));
                                 mPassItem.passType = "nomal";
                                 mPassItem.email = mEmail.getText().toString();
                                 mPassItem.phone = mPhone.getText().toString();
@@ -100,7 +101,7 @@ public class AddFragment extends BaseFragment {
                         mPassItem = new PassItem();
                         mPassItem.name = mName.getText().toString();
                         mPassItem.userName = mUserName.getText().toString();
-                        mPassItem.passWord = mPassWord.getText().toString();
+                        mPassItem.passWord = CommonUtils.encryptionString(mPassWord.getText().toString(),PreferenceHelper.getString(Const.PM_USER_NAME));
                         mPassItem.passType = "nomal";
                         mPassItem.email = mEmail.getText().toString();
                         mPassItem.phone = mPhone.getText().toString();
