@@ -155,9 +155,9 @@ public class QueryFragment extends BaseFragment implements View.OnClickListener{
                 thirdInfoLayout.setVisibility(View.GONE);
                 thirdNameLayout.setVisibility(View.GONE);
             }else {
-                thirdInfoLayout.setVisibility(View.GONE);
+                thirdInfoLayout.setVisibility(View.VISIBLE);
                 thirdInfoTxt.setText(passItem.thirdInfo);
-                thirdNameLayout.setVisibility(View.GONE);
+                thirdNameLayout.setVisibility(View.VISIBLE);
                 thirdNameTxt.setText(passItem.thirdName);
             }
         }

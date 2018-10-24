@@ -25,7 +25,9 @@ public class PasswordDAOImpl implements PasswordDao{
     public long save(PassItem passItem) {
         ContentValues values = passItem2Values(passItem);
         long newId = dbHelper.getWritableDatabase().insert(Table.TABLE_PASS_WORD, null, values);
-        System.out.println("===>> newId = "+newId);
+        if (newId>0){
+            System.out.println("===>> newId = "+newId);
+        }
         return newId;
     }
 

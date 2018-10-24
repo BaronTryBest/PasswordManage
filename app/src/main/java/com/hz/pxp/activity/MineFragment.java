@@ -75,6 +75,7 @@ public class MineFragment extends BaseFragment {
                 vh.mUserName = (TextView)convertView.findViewById(R.id.p_user_name);
                 vh.mUserNameLayout = (LinearLayout)convertView.findViewById(R.id.user_name_layout);
                 vh.mPassword = (TextView)convertView.findViewById(R.id.p_pass_word);
+                vh.mPasswordLayou = (LinearLayout)convertView.findViewById(R.id.pass_word_layout);
                 vh.mEmailLayout = (LinearLayout)convertView.findViewById(R.id.p_email_layout);
                 vh.mPhoneLayout = (LinearLayout)convertView.findViewById(R.id.p_phone_layout);
                 vh.mEmail = (TextView)convertView.findViewById(R.id.p_email);
@@ -89,23 +90,34 @@ public class MineFragment extends BaseFragment {
 
             if (passItem!=null){
                 vh.mName.setText(passItem.name);
-                if (TextUtils.isEmpty(passItem.userName)){
+                if (TextUtils.isEmpty(CommonUtils.decryptionString(passItem.userName, PreferenceHelper.getString(Const.PM_USER_NAME)))){
                     vh.mUserNameLayout.setVisibility(View.GONE);
                 }else {
-                    vh.mUserName.setText(passItem.userName);
+                    vh.mUserName.setText(CommonUtils.decryptionString(passItem.userName, PreferenceHelper.getString(Const.PM_USER_NAME)));
                     vh.mUserNameLayout.setVisibility(View.VISIBLE);
                 }
-                vh.mPassword.setText(CommonUtils.decryptionString(passItem.passWord, PreferenceHelper.getString(Const.PM_USER_NAME)));
-                if (TextUtils.isEmpty(passItem.email)){
+                if (TextUtils.isEmpty(CommonUtils.decryptionString(passItem.userName, PreferenceHelper.getString(Const.PM_USER_NAME)))){
+                    vh.mUserNameLayout.setVisibility(View.GONE);
+                }else {
+                    vh.mUserName.setText(CommonUtils.decryptionString(passItem.userName, PreferenceHelper.getString(Const.PM_USER_NAME)));
+                    vh.mUserNameLayout.setVisibility(View.VISIBLE);
+                }
+                if (TextUtils.isEmpty(CommonUtils.decryptionString(passItem.passWord, PreferenceHelper.getString(Const.PM_USER_NAME)))){
+                    vh.mPasswordLayou.setVisibility(View.GONE);
+                }else {
+                    vh.mPassword.setText(CommonUtils.decryptionString(passItem.passWord, PreferenceHelper.getString(Const.PM_USER_NAME)));
+                    vh.mPasswordLayou.setVisibility(View.VISIBLE);
+                }
+                if (TextUtils.isEmpty(CommonUtils.decryptionString(passItem.email, PreferenceHelper.getString(Const.PM_USER_NAME)))){
                     vh.mEmailLayout.setVisibility(View.GONE);
                 }else {
-                    vh.mEmail.setText(passItem.email);
+                    vh.mEmail.setText(CommonUtils.decryptionString(passItem.email, PreferenceHelper.getString(Const.PM_USER_NAME)));
                     vh.mEmailLayout.setVisibility(View.VISIBLE);
                 }
-                if (TextUtils.isEmpty(passItem.phone)){
+                if (TextUtils.isEmpty(CommonUtils.decryptionString(passItem.phone, PreferenceHelper.getString(Const.PM_USER_NAME)))){
                     vh.mPhoneLayout.setVisibility(View.GONE);
                 }else {
-                    vh.mPhone.setText(passItem.phone);
+                    vh.mPhone.setText(CommonUtils.decryptionString(passItem.phone, PreferenceHelper.getString(Const.PM_USER_NAME)));
                     vh.mPhoneLayout.setVisibility(View.VISIBLE);
                 }
                 if (passItem.isThird.equals("0")){
@@ -149,6 +161,7 @@ public class MineFragment extends BaseFragment {
         TextView mName;
         TextView mUserName;
         LinearLayout mUserNameLayout;
+        LinearLayout mPasswordLayou;
         TextView mPassword;
         LinearLayout mEmailLayout;
         TextView mEmail;

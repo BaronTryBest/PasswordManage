@@ -89,6 +89,7 @@ public class AddFragment extends BaseFragment {
                                 }
                                 mPassItem.owner = PreferenceHelper.getString(Const.PM_USER_NAME);
                                 passwordDAO.save(mPassItem);
+                                freshView();
                             }
                         });
                         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -115,9 +116,21 @@ public class AddFragment extends BaseFragment {
                         }
                         mPassItem.owner = PreferenceHelper.getString(Const.PM_USER_NAME);
                         passwordDAO.save(mPassItem);
+                        freshView();
                     }
                 }
             }
         });
+    }
+
+    private void freshView(){
+        mName.setText("");
+        mUserName.setText("");
+        mPassWord.setText("");
+        mEmail.setText("");
+        mPhone.setText("");
+        mIsThird.setChecked(false);
+        mThirdLoginName.setText("");
+        mThirdLoginInfo.setText("");
     }
 }
