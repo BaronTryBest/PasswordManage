@@ -64,7 +64,7 @@ public class AddFragment extends BaseFragment {
                 if (TextUtils.isEmpty(mName.getText().toString())){
                     Toast.makeText(getContext(),"请输入关键字",Toast.LENGTH_LONG).show();
                 }else {
-                    if (passwordDAO.isKeyNameExist(mName.getText().toString())){
+                    if (passwordDAO.addIsKeyNameExist(mName.getText().toString())){
                         //关键字已经存在
                         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                         builder.setTitle("关键字已存在");
@@ -74,11 +74,11 @@ public class AddFragment extends BaseFragment {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 mPassItem = new PassItem();
                                 mPassItem.name = mName.getText().toString();
-                                mPassItem.userName = mUserName.getText().toString();
+                                mPassItem.userName = CommonUtils.encryptionString(mUserName.getText().toString(),PreferenceHelper.getString(Const.PM_USER_NAME));
                                 mPassItem.passWord = CommonUtils.encryptionString(mPassWord.getText().toString(),PreferenceHelper.getString(Const.PM_USER_NAME));
                                 mPassItem.passType = "nomal";
-                                mPassItem.email = mEmail.getText().toString();
-                                mPassItem.phone = mPhone.getText().toString();
+                                mPassItem.email = CommonUtils.encryptionString(mEmail.getText().toString(),PreferenceHelper.getString(Const.PM_USER_NAME));
+                                mPassItem.phone = CommonUtils.encryptionString(mPhone.getText().toString(),PreferenceHelper.getString(Const.PM_USER_NAME));
                                 mPassItem.isThird = mIsThird.isChecked()?"1":"0";
                                 if (mIsThird.isChecked()){
                                     mPassItem.thirdName = mThirdLoginName.getText().toString();
@@ -100,11 +100,11 @@ public class AddFragment extends BaseFragment {
                     }else {
                         mPassItem = new PassItem();
                         mPassItem.name = mName.getText().toString();
-                        mPassItem.userName = mUserName.getText().toString();
+                        mPassItem.userName = CommonUtils.encryptionString(mUserName.getText().toString(),PreferenceHelper.getString(Const.PM_USER_NAME));
                         mPassItem.passWord = CommonUtils.encryptionString(mPassWord.getText().toString(),PreferenceHelper.getString(Const.PM_USER_NAME));
                         mPassItem.passType = "nomal";
-                        mPassItem.email = mEmail.getText().toString();
-                        mPassItem.phone = mPhone.getText().toString();
+                        mPassItem.email = CommonUtils.encryptionString(mEmail.getText().toString(),PreferenceHelper.getString(Const.PM_USER_NAME));
+                        mPassItem.phone = CommonUtils.encryptionString(mPhone.getText().toString(),PreferenceHelper.getString(Const.PM_USER_NAME));
                         mPassItem.isThird = mIsThird.isChecked()?"1":"0";
                         if (mIsThird.isChecked()){
                             mPassItem.thirdName = mThirdLoginName.getText().toString();

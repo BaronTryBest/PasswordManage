@@ -44,6 +44,11 @@ public class PasswordDAOImpl implements PasswordDao{
         return null;
     }
 
+    /**
+     * 通过关键字查询单个记录
+     * @param name
+     * @return PassItem
+     */
     public PassItem queryName(String name){
         PassItem passItem;
         String selection = Table.PasswordTable.COLUMN_NAME + "='" + name + "' and " + Table.PasswordTable.COLUMN_OWNER + "='" + PreferenceHelper.getString(Const.PM_USER_NAME) +"'";
@@ -64,6 +69,10 @@ public class PasswordDAOImpl implements PasswordDao{
         return null;
     }
 
+    /**
+     * 查询所有user name下的账号
+     * @return ArrayList
+     */
     public ArrayList<PassItem> queryPassItems() {
         ArrayList<PassItem> items = new ArrayList<>();
         String selection = Table.PasswordTable.COLUMN_OWNER + "='" + PreferenceHelper.getString(Const.PM_USER_NAME) +"'";
@@ -81,9 +90,38 @@ public class PasswordDAOImpl implements PasswordDao{
         return items;
     }
 
+    /**
+     * 查询的时候使用， 关键判断contains
+     * 判断库中是否有此关键字的记录，有的话记录下来，可能有多条
+     * @param name
+     * @return ArrayList
+     */
+    public ArrayList<PassItem> queryIsKeyNameExist(String name){
+        ArrayList<PassItem> items = new ArrayList<>();
+        String selection = Table.PasswordTable.COLUMN_OWNER + "='" + PreferenceHelper.getString(Const.PM_USER_NAME) +"'";
+        Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, selection, null, null, null, null, null);
+        if (cursor != null) {
+            try {
+                while (cursor.moveToNext()) {
+                    if (cursor2PassItem(cursor).name.contains(name)){
+                        PassItem passItem = cursor2PassItem(cursor);
+                        items.add(passItem);
+                    }
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        return items;
+    }
 
-    public boolean isKeyNameExist(String name){
-//        String selection = Table.PasswordTable.COLUMN_NAME + "=" + name + " and " + Table.PasswordTable.COLUMN_OWNER + "=" + PreferenceHelper.getString(Const.PM_USER_NAME) ;
+    /**
+     * 添加的时候使用， 关键判断equal
+     * 判断库中是否有此关键字的记录，有的话记录下来，可能有多条
+     * @param name
+     * @return ArrayList
+     */
+    public boolean addIsKeyNameExist(String name){
         String selection = Table.PasswordTable.COLUMN_NAME + "='" + name + "' and " + Table.PasswordTable.COLUMN_OWNER + "='" + PreferenceHelper.getString(Const.PM_USER_NAME) +"'";
         Cursor cursor = dbHelper.getReadableDatabase().query(Table.TABLE_PASS_WORD, null, selection, null, null, null, null, null);
         if (cursor != null) {
@@ -99,6 +137,8 @@ public class PasswordDAOImpl implements PasswordDao{
         }
         return false;
     }
+
+
     public int queryTotal(){
         int i = 0;
         String selection = Table.PasswordTable.COLUMN_OWNER + "='" + PreferenceHelper.getString(Const.PM_USER_NAME) +"'";

@@ -73,6 +73,7 @@ public class MineFragment extends BaseFragment {
                 vh = new ViewHolder();
                 vh.mName = (TextView)convertView.findViewById(R.id.p_name);
                 vh.mUserName = (TextView)convertView.findViewById(R.id.p_user_name);
+                vh.mUserNameLayout = (LinearLayout)convertView.findViewById(R.id.user_name_layout);
                 vh.mPassword = (TextView)convertView.findViewById(R.id.p_pass_word);
                 vh.mEmailLayout = (LinearLayout)convertView.findViewById(R.id.p_email_layout);
                 vh.mPhoneLayout = (LinearLayout)convertView.findViewById(R.id.p_phone_layout);
@@ -88,7 +89,12 @@ public class MineFragment extends BaseFragment {
 
             if (passItem!=null){
                 vh.mName.setText(passItem.name);
-                vh.mUserName.setText(passItem.userName);
+                if (TextUtils.isEmpty(passItem.userName)){
+                    vh.mUserNameLayout.setVisibility(View.GONE);
+                }else {
+                    vh.mUserName.setText(passItem.userName);
+                    vh.mUserNameLayout.setVisibility(View.VISIBLE);
+                }
                 vh.mPassword.setText(CommonUtils.decryptionString(passItem.passWord, PreferenceHelper.getString(Const.PM_USER_NAME)));
                 if (TextUtils.isEmpty(passItem.email)){
                     vh.mEmailLayout.setVisibility(View.GONE);
@@ -142,6 +148,7 @@ public class MineFragment extends BaseFragment {
     private class ViewHolder{
         TextView mName;
         TextView mUserName;
+        LinearLayout mUserNameLayout;
         TextView mPassword;
         LinearLayout mEmailLayout;
         TextView mEmail;
