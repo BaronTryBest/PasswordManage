@@ -51,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqlSb.append(Table.PasswordTable.COLUMN_THIRD_NAME).append(" TEXT,");
         sqlSb.append(Table.PasswordTable.COLUMN_THIRD_INFO).append(" TEXT,");
         sqlSb.append(Table.PasswordTable.COLUMN_OWNER).append(" TEXT,");
-        sqlSb.append("UNIQUE (" + Table.PasswordTable.COLUMN_NAME + ") ON CONFLICT REPLACE);");
+        sqlSb.append("UNIQUE (" + Table.PasswordTable.COLUMN_NAME+"," + Table.PasswordTable.COLUMN_OWNER +") ON CONFLICT REPLACE);");
         db.execSQL(sqlSb.toString());
     }
 }

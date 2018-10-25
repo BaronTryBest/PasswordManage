@@ -88,7 +88,9 @@ public class AddFragment extends BaseFragment {
                                     mPassItem.thirdInfo = "";
                                 }
                                 mPassItem.owner = PreferenceHelper.getString(Const.PM_USER_NAME);
-                                passwordDAO.save(mPassItem);
+                                if (passwordDAO.save(mPassItem)>0){
+                                    Toast.makeText(getContext(),R.string.add_succeed,Toast.LENGTH_LONG).show();
+                                }
                                 freshView();
                             }
                         });
@@ -115,7 +117,9 @@ public class AddFragment extends BaseFragment {
                             mPassItem.thirdInfo = "";
                         }
                         mPassItem.owner = PreferenceHelper.getString(Const.PM_USER_NAME);
-                        passwordDAO.save(mPassItem);
+                        if (passwordDAO.save(mPassItem)>0){
+                            Toast.makeText(getContext(),R.string.add_succeed,Toast.LENGTH_LONG).show();
+                        }
                         freshView();
                     }
                 }

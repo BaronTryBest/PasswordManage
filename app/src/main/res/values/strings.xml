@@ -16,5 +16,14 @@
     <string name="third_info">第三方登录信息：</string>
     <string name="login_hint">请输入用户名</string>
     <string name="check">查</string>
+    <string name="add_succeed">添加成功</string>
+    <string name="del_succeed">删除成功</string>
+    <string name="hint_name">请输入关键字</string>
+    <string name="hint_user_name">请输入用户名</string>
+    <string name="hint_password">请输入密码</string>
+    <string name="hint_email">请输入邮箱</string>
+    <string name="hint_phone">请输入手机</string>
+    <string name="hint_third_name">请输入第三方登录平台</string>
+    <string name="hint_third_info">请输入第三方登录信息</string>
 
 </resources>

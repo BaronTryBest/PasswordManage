@@ -11,13 +11,17 @@
     <LinearLayout
         android:id="@+id/add_password_layout"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="#ffffff"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:paddingLeft="20dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -28,12 +32,24 @@
 
             <EditText
                 android:id="@+id/name"
+                android:background="@null"
+                android:hint="@string/hint_name"
+                android:gravity="center_vertical"
+                android:textColor="#666666"
+                android:textSize="13sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="@color/divider"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:paddingLeft="20dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -44,12 +60,24 @@
 
             <EditText
                 android:id="@+id/user_name"
+                android:background="@null"
+                android:hint="@string/hint_user_name"
+                android:gravity="center_vertical"
+                android:textColor="#666666"
+                android:textSize="13sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="@color/divider"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:paddingLeft="20dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -60,12 +88,24 @@
 
             <EditText
                 android:id="@+id/password"
+                android:background="@null"
+                android:hint="@string/hint_password"
+                android:gravity="center_vertical"
+                android:textColor="#666666"
+                android:textSize="13sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="@color/divider"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:paddingLeft="20dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -76,12 +116,24 @@
 
             <EditText
                 android:id="@+id/email"
+                android:background="@null"
+                android:hint="@string/hint_email"
+                android:gravity="center_vertical"
+                android:textColor="#666666"
+                android:textSize="13sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="@color/divider"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:paddingLeft="20dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -92,12 +144,24 @@
 
             <EditText
                 android:id="@+id/phone"
+                android:background="@null"
+                android:hint="@string/hint_phone"
+                android:gravity="center_vertical"
+                android:textColor="#666666"
+                android:textSize="13sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="@color/divider"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:paddingLeft="20dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -111,16 +175,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:background="@color/divider"/>
         <LinearLayout
             android:id="@+id/third_login_info_layout"
             android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:paddingLeft="20dp"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -131,13 +202,22 @@
 
                 <EditText
                     android:id="@+id/third_name"
+                    android:background="@null"
+                    android:hint="@string/hint_third_name"
+                    android:gravity="center_vertical"
+                    android:textColor="#666666"
+                    android:textSize="13sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -148,6 +228,11 @@
 
                 <EditText
                     android:id="@+id/third_info"
+                    android:background="@null"
+                    android:hint="@string/hint_third_info"
+                    android:gravity="center_vertical"
+                    android:textColor="#666666"
+                    android:textSize="13sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -159,8 +244,12 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/add_pw"
         android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="50dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/loginselector"
         android:text="@string/add_password" />
 
 </LinearLayout>

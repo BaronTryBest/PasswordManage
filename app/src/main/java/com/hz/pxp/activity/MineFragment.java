@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hz.pxp.R;
 import com.hz.pxp.common.CommonUtils;
@@ -35,16 +36,13 @@ public class MineFragment extends BaseFragment {
         rootView = inflater.inflate(R.layout.fragment_mine, container, false);
 
         passwordList = (ListView)rootView.findViewById(R.id.list_mine);
-        passItems = passwordDAO.queryPassItems();
-        passwordAdapter = new PasswordAdapter();
-        passwordList.setAdapter(passwordAdapter);
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        passwordList.setAdapter(passwordAdapter);
+        freshView();
     }
 
     private class PasswordAdapter extends BaseAdapter{
@@ -143,7 +141,10 @@ public class MineFragment extends BaseFragment {
                         public void onClick(DialogInterface dialog, int which) {
                             switch (which) {
                                 case 0:
-                                    passwordDAO.delete(passItem);
+                                    if (passwordDAO.delete(passItem)>0){
+                                        Toast.makeText(getContext(),R.string.del_succeed,Toast.LENGTH_LONG).show();
+                                        freshView();
+                                    }
                                     break;
                             }
                         }
@@ -171,6 +172,12 @@ public class MineFragment extends BaseFragment {
         LinearLayout mThirdInfoLayout;
         TextView mThirdName;
         TextView mThirdInfo;
+    }
+
+    private void freshView(){
+        passItems = passwordDAO.queryPassItems();
+        passwordAdapter = new PasswordAdapter();
+        passwordList.setAdapter(passwordAdapter);
     }
 
 }

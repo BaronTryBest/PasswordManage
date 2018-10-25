@@ -33,7 +33,8 @@ public class PasswordDAOImpl implements PasswordDao{
 
     @Override
     public int delete(PassItem passItem) {
-        return 0;
+        String whereClause = Table.PasswordTable.COLUMN_NAME + "='" + passItem.name + "' and " + Table.PasswordTable.COLUMN_OWNER + "='" + PreferenceHelper.getString(Const.PM_USER_NAME) +"'";
+        return dbHelper.getWritableDatabase().delete(Table.TABLE_PASS_WORD, whereClause, null);
     }
 
     @Override
