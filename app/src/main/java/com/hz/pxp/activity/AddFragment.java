@@ -35,6 +35,7 @@ public class AddFragment extends BaseFragment {
     protected void initViews(LayoutInflater inflater, ViewGroup container) {
         rootView = inflater.inflate(R.layout.fragment_add, container, false);
 
+        setHeaderTitle("增");
         mName = (EditText)rootView.findViewById(R.id.name);
         mUserName = (EditText)rootView.findViewById(R.id.user_name);
         mPassWord = (EditText)rootView.findViewById(R.id.password);

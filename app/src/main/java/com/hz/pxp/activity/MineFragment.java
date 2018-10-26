@@ -31,10 +31,13 @@ public class MineFragment extends BaseFragment {
     private PasswordAdapter passwordAdapter;
     private ArrayList<PassItem> passItems = new ArrayList<>();
 
+    private TextView noRecordHint;
+
     @Override
     protected void initViews(LayoutInflater inflater, ViewGroup container) {
         rootView = inflater.inflate(R.layout.fragment_mine, container, false);
-
+        setHeaderTitle("览");
+        noRecordHint = (TextView)rootView.findViewById(R.id.no_record_hint_txt);
         passwordList = (ListView)rootView.findViewById(R.id.list_mine);
 
     }
@@ -176,8 +179,14 @@ public class MineFragment extends BaseFragment {
 
     private void freshView(){
         passItems = passwordDAO.queryPassItems();
-        passwordAdapter = new PasswordAdapter();
-        passwordList.setAdapter(passwordAdapter);
+
+        if (passItems.size()>0){
+            noRecordHint.setVisibility(View.GONE);
+            passwordAdapter = new PasswordAdapter();
+            passwordList.setAdapter(passwordAdapter);
+        }else {
+            noRecordHint.setVisibility(View.VISIBLE);
+        }
     }
 
 }

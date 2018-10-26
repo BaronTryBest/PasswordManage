@@ -8,6 +8,17 @@
 
     <include layout="@layout/include_header"/>
 
+    <TextView
+        android:id="@+id/no_record_hint_txt"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@color/loginFront"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="@string/hint_no_record"/>
+
     <ListView
         android:id="@+id/list_mine"
         android:layout_marginLeft="15dp"

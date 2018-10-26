@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -44,9 +45,9 @@ public class MainTabActivity extends BaseActivity {
     private void initTabs() {
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
-        mCheckTab = mTabHost.newTabSpec("msg").setIndicator(newIndicatorView(R.string.check_tab));
-        mAddTab = mTabHost.newTabSpec("contact").setIndicator(newIndicatorView(R.string.add_tab));
-        mMineTab = mTabHost.newTabSpec("mine").setIndicator(newIndicatorView(R.string.mine_tab));
+        mCheckTab = mTabHost.newTabSpec("msg").setIndicator(newIndicatorView(R.drawable.tab_query,R.string.check_tab));
+        mAddTab = mTabHost.newTabSpec("contact").setIndicator(newIndicatorView(R.drawable.tab_add,R.string.add_tab));
+        mMineTab = mTabHost.newTabSpec("mine").setIndicator(newIndicatorView(R.drawable.tab_mine,R.string.mine_tab));
 
         mTabHost.addTab(mCheckTab, QueryFragment.class, null);
         mTabHost.addTab(mAddTab, AddFragment.class, null);
@@ -64,10 +65,13 @@ public class MainTabActivity extends BaseActivity {
 //     *            图片资源ID
      * @return 创建成功的View
      */
-    private View newIndicatorView(int labelResId) {
+    private View newIndicatorView(int iconResId, int labelResId) {
         View indicatorView = getLayoutInflater().inflate(R.layout.tab_indicator, null);
-        TextView textView = (TextView) indicatorView.findViewById(R.id.text);
+        TextView textView = (TextView) indicatorView.findViewById(R.id.tab_text);
         textView.setText(labelResId);
+        ImageView imageView = (ImageView) indicatorView.findViewById(R.id.tab_image);
+        textView.setText(labelResId);
+        imageView.setImageResource(iconResId);
         indicatorView.setVisibility(View.VISIBLE);
         return indicatorView;
     }
