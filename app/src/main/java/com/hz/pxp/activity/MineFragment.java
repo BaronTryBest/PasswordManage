@@ -85,6 +85,7 @@ public class MineFragment extends BaseFragment {
                 vh.mThirdInfoLayout = (LinearLayout)convertView.findViewById(R.id.p_third_info_layout);
                 vh.mThirdName = (TextView)convertView.findViewById(R.id.p_third_name);
                 vh.mThirdInfo = (TextView)convertView.findViewById(R.id.p_third_info);
+                convertView.setTag(vh);
             }else {
                 vh =(ViewHolder) convertView.getTag();
             }

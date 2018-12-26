@@ -23,9 +23,10 @@
         android:id="@+id/list_mine"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"
-        android:dividerHeight="5dp"></ListView>
+        android:dividerHeight="5dp"/>
 
 </LinearLayout>
