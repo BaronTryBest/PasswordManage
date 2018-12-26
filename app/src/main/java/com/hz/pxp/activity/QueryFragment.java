@@ -48,6 +48,7 @@ public class QueryFragment extends BaseFragment implements View.OnClickListener{
         rootView = inflater.inflate(R.layout.fragment_check, container, false);
 
         setHeaderTitle("查");
+//        hello
         nameLayout = (LinearLayout)rootView.findViewById(R.id.name_layout);
         userNameLayout = (LinearLayout)rootView.findViewById(R.id.user_name_layout);
         passwordLayout = (LinearLayout)rootView.findViewById(R.id.pass_word_layout);
